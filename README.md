@@ -40,5 +40,6 @@ Povlsomware.exe can also be execyted in memory using Metasploits own "execute_do
 
 
 ## New feature
-The password is now stored in a char[] instead of a string. 
+The password is now stored in a char[] instead of a string.  
+
 Alt+tab and the Windows keys are now disabled when launched.
