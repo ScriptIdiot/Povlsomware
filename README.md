@@ -34,7 +34,7 @@ More than that, Povlsomware is programmed to communicate back to the Cobaltstrik
 ![alt text](https://raw.githubusercontent.com/povlteksttv/Povlsomware/master/img/output.PNG?raw=true)  
 
 ## Metasploit integration
-Povlsomware.exe can also be execyted in memory using Metasploits own "execute_dotnet_assembly". Again, Povlsomware is executed entirely in memory making detection a lot harder. As can be seen from the screenshot the encrypted files are communiated back to meterpreter: 
+Povlsomware.exe can also be executed in memory using Metasploits own "execute_dotnet_assembly". Again, Povlsomware is executed entirely in memory making detection a lot harder. As can be seen from the screenshot the encrypted files are communiated back to meterpreter: 
 
 ![alt text](https://raw.githubusercontent.com/povlteksttv/Povlsomware/master/img/meterpreter_output.PNG?raw=true)  
 
