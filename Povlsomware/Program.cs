@@ -203,7 +203,7 @@ namespace Povlsomware
         // For each found file do the following.
         public static void ProcessFile(string fileName, int action, string password)
         {
-            if (action == 1 && !IsMarked(fileName))
+            if (action == 1)
             {
                 try
                 {
@@ -216,7 +216,7 @@ namespace Povlsomware
                 {
                 }
             }
-            else if (action == 0 && IsMarked(fileName))
+            else if (action == 0)
             {
                 try
                 {
