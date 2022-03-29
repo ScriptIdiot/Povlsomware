@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Windows.Forms;
 using System.Security.Cryptography;
@@ -203,7 +203,7 @@ namespace Povlsomware
         // For each found file do the following.
         public static void ProcessFile(string fileName, int action, string password)
         {
-            if (action == 1)
+            if (action == 1 && !IsMarked(fileName))
             {
                 try
                 {
@@ -216,7 +216,7 @@ namespace Povlsomware
                 {
                 }
             }
-            else if (action == 0)
+            else if (action == 0 && IsMarked(fileName))
             {
                 try
                 {
