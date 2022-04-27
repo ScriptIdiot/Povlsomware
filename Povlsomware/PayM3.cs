@@ -83,7 +83,7 @@ namespace Povlsomware
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             string input = e.Argument as string;
-            string path = ADConnect.Program.path;
+            string path = Povlsomware.Program.path;
             Program.UndoAttack(input,path);
 
         }
