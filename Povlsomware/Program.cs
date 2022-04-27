@@ -25,7 +25,7 @@ namespace Povlsomware
             return password;
         }
 
-        static void Main()
+        static void Main(string[] args)
         {
             //get argument
             if (args.Length != 1)
