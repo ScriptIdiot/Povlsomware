@@ -1,3 +1,7 @@
+Modified to take arg for the use of Cobalt Strike
+![image](https://user-images.githubusercontent.com/21979646/165526116-5bda488f-4426-471e-8b1e-0e2b1b5068f8.png)
+
+
 # Disclaimer 
 TrendMicro wrote a small piece about this software. I believe they overestimated the effort it took to make it Cobalt-Strike integrated, giving me way too much credit. First of all, making it run smoothly using the execute-assembly was made possible by adding: [STAthread]. Also, Execute-assembly works for anything compiled by C#. Lastly, the communication between CS and Povlsomware is just standard "Console.Writeline". I was amazed myself, that It was this easy. Finally, the original Povlsomware does not include any ransomnotes - especially not in russian. Read more: https://www.trendmicro.com/en_ca/research/21/c/povlsomware-ransomware-features-cobalt-strike-compatibility.html
 
